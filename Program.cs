@@ -20,8 +20,9 @@ namespace Projetin
             var connection = new SqlConnection(CONNECTION_STRING);
             connection.Open();
 
-             ReadUsers(connection);
-              CreateUser(connection);
+            //  ReadUsers(connection);
+            //   CreateUser(connection);
+              ReadUsersWithRoles(connection);
             // ReadRoles(connection);
             // ReadTags(connection);
            
@@ -51,6 +52,21 @@ namespace Projetin
 
             foreach (var item in items)
                 System.Console.WriteLine(item.Name);
+        }
+
+         public static void ReadUsersWithRoles(SqlConnection connection)
+        {
+            var repository = new UserRepository(connection);
+            var items = repository.GetWithRoles();
+
+            foreach (var item in items)
+            {
+                System.Console.WriteLine(item.Name);
+                foreach(var role in item.Roles)
+                {
+                    System.Console.WriteLine($" -  {role.Name}");
+                }
+        }
         }
 
         public static void ReadRoles(SqlConnection connection)
