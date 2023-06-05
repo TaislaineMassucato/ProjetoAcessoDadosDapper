@@ -39,8 +39,11 @@ namespace Projetin
             var repository = new RoleRepository(connection);
             var roles = repository.Get();
 
+          
+
             foreach (var role in roles)
                 System.Console.WriteLine(role.Name);
+            
         }
     
     
