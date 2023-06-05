@@ -1,6 +1,6 @@
 using Dapper.Contrib.Extensions;
 
-namespace ProjeAcessoDadosDapper
+namespace ProjeAcessoDadosDapper.Models
 {
     [Table("[User]")]
     public class User
