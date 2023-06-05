@@ -20,13 +20,30 @@ namespace Projetin
             var connection = new SqlConnection(CONNECTION_STRING);
             connection.Open();
 
-            ReadUsers(connection);
-            ReadRoles(connection);
-            ReadTags(connection);
+             ReadUsers(connection);
+              CreateUser(connection);
+            // ReadRoles(connection);
+            // ReadTags(connection);
+           
             
             connection.Close();
         }
 
+        public static void CreateUser(SqlConnection connection)
+        {
+            var user = new User()
+            {
+                Email = "email.Dev@dev",
+                Bio = "BioBioBIO",
+                Image = "iMAGEM",
+                Name = "Nomee",
+                PasswordHash = "Hash",
+                Slug = "Slug"
+            };
+
+            var reposity = new Repository<User>(connection);
+            reposity.Create(user);
+        }
         public static void ReadUsers(SqlConnection connection)
         {
             var repository = new Repository<User>(connection);
@@ -55,9 +72,6 @@ namespace Projetin
             {
                 System.Console.WriteLine(item.Name);
             }
-        }
-    
-    
+        }  
     }
-
 }
